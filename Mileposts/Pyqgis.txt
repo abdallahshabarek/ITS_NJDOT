@@ -1,0 +1,18 @@
+from qgis import processing
+import pandas as pd
+
+shapefile = "C:\\Users\\Abdullah.Shabarek\\Desktop\\AMC_Coding\\ritis\\Milepost\\NJ_Roads_shp\\DOT_New_Jersey_Roads.shp"
+Route = "00000001__"
+
+layer1 = iface.addVectorLayer(shapefile, ' ' , 'ogr')
+layer1.selectByExpression(str("SRI ='")+str(Route)+"'")
+_writer = QgsVectorFileWriter.writeAsVectorFormat(layer1, "C:\\Users\\Abdullah.Shabarek\\Desktop\\AMC_Coding\\ritis\\Milepost\\NJ_Roads_shp\\"+Route+".shp","utf_8",layer1.crs(),"ESRI Shapefile", onlySelected=True)
+
+route_layer = iface.addVectorLayer("C:\\Users\\Abdullah.Shabarek\\Desktop\\AMC_Coding\\ritis\\Milepost\\NJ_Roads_shp\\"+Route+".shp",' ', 'ogr')
+
+
+processing.run("grass7:v.split", ({ '-f' : True, '-n' : False, 'GRASS_MIN_AREA_PARAMETER' : 0.0001, 'GRASS_OUTPUT_TYPE_PARAMETER' : 0, 'GRASS_REGION_PARAMETER' : None, 'GRASS_SNAP_TOLERANCE_PARAMETER' : -1, 'GRASS_VECTOR_DSCO' : '', 'GRASS_VECTOR_EXPORT_NOCAT' : False, 'GRASS_VECTOR_LCO' : '', 'input' : 'C:\\Users\\Abdullah.Shabarek\\Desktop\\AMC_Coding\\ritis\\Milepost\\NJ_Roads_shp\\'+Route+'.shp', 'length' : 0.1, 'output' : 'C:\\Users\\Abdullah.Shabarek\\Desktop\\AMC_Coding\\ritis\\Milepost\\NJ_Roads_shp\\'+Route+'output.shp', 'units' : 5, 'vertices' : None }))
+_writer = QgsVectorFileWriter.writeAsVectorFormat(layer1, 'C:\\Users\\Abdullah.Shabarek\\Desktop\\AMC_Coding\\ritis\\Milepost\\NJ_Roads_shp\\'+Route+'output.shp',"utf_8",layer1.crs(),"ESRI Shapefile", onlySelected=True,layerOptions=['SHPT=POINTZM'])
+route_layer2 = iface.addVectorLayer('C:\\Users\\Abdullah.Shabarek\\Desktop\\AMC_Coding\\ritis\\Milepost\\NJ_Roads_shp\\'+Route+'output.shp',' ', 'ogr')
+
+processing.runandload("grass7:v.split", ({ '-f' : True, '-n' : False, 'GRASS_MIN_AREA_PARAMETER' : 0.0001, 'GRASS_OUTPUT_TYPE_PARAMETER' : 0, 'GRASS_REGION_PARAMETER' : None, 'GRASS_SNAP_TOLERANCE_PARAMETER' : -1, 'GRASS_VECTOR_DSCO' : '', 'GRASS_VECTOR_EXPORT_NOCAT' : False, 'GRASS_VECTOR_LCO' : '', 'input' : 'C:\\Users\\Abdullah.Shabarek\\Desktop\\AMC_Coding\\ritis\\Milepost\\NJ_Roads_shp\\'+Route+'.shp', 'length' : 0.1, 'output' : QgsProcessing.TEMPORARY_OUTPUT, 'units' : 5, 'vertices' : None }))
