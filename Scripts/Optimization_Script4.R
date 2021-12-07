@@ -116,7 +116,7 @@ for (period2 in period_2_hrs){
           
           df_subset_period_final <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_final_lower & df$time < period_final_upper])
           colnames(df_subset_period_final) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_final <- as.integer(df_error_tmp_period1$proposed_cycle_period_1[1])
+          proposed_cycle_period_final <- as.integer(df_error_tmp_period1$period1_proposed[1])
           df_proposed_cycle_final <- as.data.frame(rep(proposed_cycle_period_final,times = nrow(df_subset_period_final)))
           colnames(df_proposed_cycle_final) <- c("proposed")
           df_subset_period_final$diff <- abs(df_subset_period_final$Nominal_Cycle_Length - df_proposed_cycle_final$proposed)
@@ -319,7 +319,7 @@ if(maximum_periods == 4){
               
               df_subset_period_final <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_final_lower & df$time < period_final_upper])
               colnames(df_subset_period_final) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_final <- as.integer(df_error_tmp_period1$proposed_cycle_period_1[1])
+              proposed_cycle_period_final <- as.integer(df_error_tmp_period1$period1_proposed[1])
               df_proposed_cycle_final <- as.data.frame(rep(proposed_cycle_period_final,times = nrow(df_subset_period_final)))
               colnames(df_proposed_cycle_final) <- c("proposed")
               df_subset_period_final$diff <- abs(df_subset_period_final$Nominal_Cycle_Length - df_proposed_cycle_final$proposed)
@@ -575,7 +575,7 @@ if(maximum_periods == 5){
                   
                   df_subset_period_final <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_final_lower & df$time < period_final_upper])
                   colnames(df_subset_period_final) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_final <- as.integer(df_error_tmp_period1$proposed_cycle_period_1[1])
+                  proposed_cycle_period_final <- as.integer(df_error_tmp_period1$period1_proposed[1])
                   df_proposed_cycle_final <- as.data.frame(rep(proposed_cycle_period_final,times = nrow(df_subset_period_final)))
                   colnames(df_proposed_cycle_final) <- c("proposed")
                   df_subset_period_final$diff <- abs(df_subset_period_final$Nominal_Cycle_Length - df_proposed_cycle_final$proposed)
@@ -873,7 +873,7 @@ if(maximum_periods == 6){
                       
                       df_subset_period_final <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_final_lower & df$time < period_final_upper])
                       colnames(df_subset_period_final) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_final <- as.integer(df_error_tmp_period1$proposed_cycle_period_1[1])
+                      proposed_cycle_period_final <- as.integer(df_error_tmp_period1$period1_proposed[1])
                       df_proposed_cycle_final <- as.data.frame(rep(proposed_cycle_period_final,times = nrow(df_subset_period_final)))
                       colnames(df_proposed_cycle_final) <- c("proposed")
                       df_subset_period_final$diff <- abs(df_subset_period_final$Nominal_Cycle_Length - df_proposed_cycle_final$proposed)
@@ -1219,7 +1219,7 @@ if(maximum_periods == 7){
                           
                           df_subset_period_final <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_final_lower & df$time < period_final_upper])
                           colnames(df_subset_period_final) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_final <- as.integer(df_error_tmp_period1$proposed_cycle_period_1[1])
+                          proposed_cycle_period_final <- as.integer(df_error_tmp_period1$period1_proposed[1])
                           df_proposed_cycle_final <- as.data.frame(rep(proposed_cycle_period_final,times = nrow(df_subset_period_final)))
                           colnames(df_proposed_cycle_final) <- c("proposed")
                           df_subset_period_final$diff <- abs(df_subset_period_final$Nominal_Cycle_Length - df_proposed_cycle_final$proposed)
@@ -1615,7 +1615,7 @@ if(maximum_periods == 8){
                               
                               df_subset_period_final <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_final_lower & df$time < period_final_upper])
                               colnames(df_subset_period_final) <- c("Nominal_Cycle_Length")
-                              proposed_cycle_period_final <- as.integer(df_error_tmp_period1$proposed_cycle_period_1[1])
+                              proposed_cycle_period_final <- as.integer(df_error_tmp_period1$period1_proposed[1])
                               df_proposed_cycle_final <- as.data.frame(rep(proposed_cycle_period_final,times = nrow(df_subset_period_final)))
                               colnames(df_proposed_cycle_final) <- c("proposed")
                               df_subset_period_final$diff <- abs(df_subset_period_final$Nominal_Cycle_Length - df_proposed_cycle_final$proposed)
@@ -2060,7 +2060,7 @@ if(maximum_periods == 9){
                                   
                                   df_subset_period_final <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_final_lower & df$time < period_final_upper])
                                   colnames(df_subset_period_final) <- c("Nominal_Cycle_Length")
-                                  proposed_cycle_period_final <- as.integer(df_error_tmp_period1$proposed_cycle_period_1[1])
+                                  proposed_cycle_period_final <- as.integer(df_error_tmp_period1$period1_proposed[1])
                                   df_proposed_cycle_final <- as.data.frame(rep(proposed_cycle_period_final,times = nrow(df_subset_period_final)))
                                   colnames(df_proposed_cycle_final) <- c("proposed")
                                   df_subset_period_final$diff <- abs(df_subset_period_final$Nominal_Cycle_Length - df_proposed_cycle_final$proposed)
@@ -2367,4 +2367,9 @@ if(maximum_periods == 9){
 }
 return(df_final)
 }
-# dttt2 <- TOD_optimization(dttt,5,1,3)
+
+
+dttt <- readr::read_csv("C:/Users/Abdullah.Shabarek/Desktop/TOD/output_sep_week2/Avg_midweek_zone1.csv")
+dttt2 <- TOD_optimization(dttt,5,1,3)
+
+
