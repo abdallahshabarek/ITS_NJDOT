@@ -1,4 +1,4 @@
-TOD_optimization <- function(dataframe_avg,max_periods,min_dur,max_dur,cycle_length_rounded){
+TOD_optimization <- function(dataframe_avg,max_periods,min_dur,max_dur,percentile,cycle_length_rounded){
 
 library(dplyr)
 
