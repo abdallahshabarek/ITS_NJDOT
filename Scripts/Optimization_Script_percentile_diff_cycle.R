@@ -49,11 +49,11 @@ period_1_upper <- 60*hr+mts*30
 
 df_subset_period_1 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_1_lower & df$time < period_1_upper])
 colnames(df_subset_period_1) <- c("Nominal_Cycle_Length")
-proposed_cycle_period_1 <- as.integer(mean(df_subset_period_1$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+proposed_cycle_period_1 <- as.integer(quantile(df_subset_period_1$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
 df_proposed_cycle_1 <- as.data.frame(rep(proposed_cycle_period_1,times = nrow(df_subset_period_1)))
 colnames(df_proposed_cycle_1) <- c("proposed")
 df_subset_period_1$diff <- abs(df_subset_period_1$Nominal_Cycle_Length - df_proposed_cycle_1$proposed)
-diff_avg_period1 <- quantile(df_subset_period_1$diff, prob = percentile)
+diff_avg_period1 <- mean(df_subset_period_1$diff)
 
 df_error_tmp_period1 <- data.frame(period_1_lower,period_1_upper,diff_avg_period1,proposed_cycle_period_1)
 colnames(df_error_tmp_period1) <- c("period1_start","period1_end", "period1_error","period1_proposed")
@@ -67,11 +67,11 @@ for (period2 in period_2_hrs){
   if(period_2_upper <= 1440){
     df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
     colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-    proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+    proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
     df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
     colnames(df_proposed_cycle_2) <- c("proposed")
     df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-    diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+    diff_avg_period2 <- mean(df_subset_period_2$diff)
     
     df_error_tmp_period2 <- data.frame(period_2_lower,period_2_upper,diff_avg_period2,proposed_cycle_period_2)
     colnames(df_error_tmp_period2) <- c("period2_start","period2_end", "period2_error","period2_proposed")
@@ -84,11 +84,11 @@ for (period2 in period_2_hrs){
       if(period_3_upper == 1440){
         df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
         colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-        proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+        proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
         df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
         colnames(df_proposed_cycle_3) <- c("proposed")
         df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-        diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+        diff_avg_period3 <- mean(df_subset_period_3$diff)
         
         df_error_tmp_period3 <- data.frame(period_3_lower,period_3_upper,diff_avg_period3,proposed_cycle_period_3)
         colnames(df_error_tmp_period3) <- c("period3_start","period3_end", "period3_error","period3_proposed")
@@ -105,11 +105,11 @@ for (period2 in period_2_hrs){
           
           df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
           colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
           colnames(df_proposed_cycle_3) <- c("proposed")
           df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-          diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+          diff_avg_period3 <- mean(df_subset_period_3$diff)
           
           df_error_tmp_period3 <- data.frame(period_3_lower,period_3_upper,diff_avg_period3,proposed_cycle_period_3)
           colnames(df_error_tmp_period3) <- c("period3_start","period3_end", "period3_error","period3_proposed")
@@ -134,11 +134,11 @@ for (period2 in period_2_hrs){
         period_3_upper <- 1440
         df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
         colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-        proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+        proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
         df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
         colnames(df_proposed_cycle_3) <- c("proposed")
         df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-        diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+        diff_avg_period3 <- mean(df_subset_period_3$diff)
         
         # df_error <- data.frame(matrix(ncol = 9, nrow = 0))
         # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error","period3_start","period3_end", "period3_error")
@@ -158,11 +158,11 @@ for (period2 in period_2_hrs){
     period_2_upper <- 1440
     df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
     colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-    proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+    proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
     df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
     colnames(df_proposed_cycle_2) <- c("proposed")
     df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-    diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+    diff_avg_period2 <- mean(df_subset_period_2$diff)
     
     # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
     # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -237,11 +237,11 @@ if(maximum_periods == 4){
       
       df_subset_period_1 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_1_lower & df$time < period_1_upper])
       colnames(df_subset_period_1) <- c("Nominal_Cycle_Length")
-      proposed_cycle_period_1 <- as.integer(mean(df_subset_period_1$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+      proposed_cycle_period_1 <- as.integer(quantile(df_subset_period_1$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
       df_proposed_cycle_1 <- as.data.frame(rep(proposed_cycle_period_1,times = nrow(df_subset_period_1)))
       colnames(df_proposed_cycle_1) <- c("proposed")
       df_subset_period_1$diff <- abs(df_subset_period_1$Nominal_Cycle_Length - df_proposed_cycle_1$proposed)
-      diff_avg_period1 <- quantile(df_subset_period_1$diff, prob = percentile)
+      diff_avg_period1 <- mean(df_subset_period_1$diff)
       
       df_error_tmp_period1 <- data.frame(period_1_lower,period_1_upper,diff_avg_period1,proposed_cycle_period_1)
       colnames(df_error_tmp_period1) <- c("period1_start","period1_end", "period1_error","period1_proposed")
@@ -255,11 +255,11 @@ if(maximum_periods == 4){
         if(period_2_upper <= 1440){
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           df_error_tmp_period2 <- data.frame(period_2_lower,period_2_upper,diff_avg_period2,proposed_cycle_period_2)
           colnames(df_error_tmp_period2) <- c("period2_start","period2_end", "period2_error","period2_proposed")
@@ -270,11 +270,11 @@ if(maximum_periods == 4){
             if(period_3_upper <= 1440){
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               df_error_tmp_period3 <- data.frame(period_3_lower,period_3_upper,diff_avg_period3,proposed_cycle_period_3)
               colnames(df_error_tmp_period3) <- c("period3_start","period3_end", "period3_error","period3_proposed")
@@ -287,11 +287,11 @@ if(maximum_periods == 4){
             if(period_4_upper == 1440){
               df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
               colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
               colnames(df_proposed_cycle_4) <- c("proposed")
               df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-              diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+              diff_avg_period4 <- mean(df_subset_period_4$diff)
               
               df_error_tmp_period4 <- data.frame(period_4_lower,period_4_upper,diff_avg_period4,proposed_cycle_period_4)
               colnames(df_error_tmp_period4) <- c("period4_start","period4_end", "period4_error","period4_proposed")
@@ -308,11 +308,11 @@ if(maximum_periods == 4){
               
               df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
               colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
               colnames(df_proposed_cycle_4) <- c("proposed")
               df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-              diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+              diff_avg_period4 <- mean(df_subset_period_4$diff)
               
               df_error_tmp_period4 <- data.frame(period_4_lower,period_4_upper,diff_avg_period4,proposed_cycle_period_4)
               colnames(df_error_tmp_period4) <- c("period4_start","period4_end", "period4_error","period4_proposed")
@@ -337,11 +337,11 @@ if(maximum_periods == 4){
               period_4_upper <- 1440
               df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
               colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
               colnames(df_proposed_cycle_4) <- c("proposed")
               df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-              diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+              diff_avg_period4 <- mean(df_subset_period_4$diff)
               
               # df_error <- data.frame(matrix(ncol = 9, nrow = 0))
               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error","period3_start","period3_end", "period3_error")
@@ -364,11 +364,11 @@ if(maximum_periods == 4){
           period_3_upper <- 1440
           df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
           colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
           colnames(df_proposed_cycle_3) <- c("proposed")
           df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-          diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+          diff_avg_period3 <- mean(df_subset_period_3$diff)
           
           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -388,11 +388,11 @@ if(maximum_periods == 4){
           period_2_upper <- 1440
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -477,11 +477,11 @@ if(maximum_periods == 5){
       
       df_subset_period_1 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_1_lower & df$time < period_1_upper])
       colnames(df_subset_period_1) <- c("Nominal_Cycle_Length")
-      proposed_cycle_period_1 <- as.integer(mean(df_subset_period_1$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+      proposed_cycle_period_1 <- as.integer(quantile(df_subset_period_1$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
       df_proposed_cycle_1 <- as.data.frame(rep(proposed_cycle_period_1,times = nrow(df_subset_period_1)))
       colnames(df_proposed_cycle_1) <- c("proposed")
       df_subset_period_1$diff <- abs(df_subset_period_1$Nominal_Cycle_Length - df_proposed_cycle_1$proposed)
-      diff_avg_period1 <- quantile(df_subset_period_1$diff, prob = percentile)
+      diff_avg_period1 <- mean(df_subset_period_1$diff)
       
       df_error_tmp_period1 <- data.frame(period_1_lower,period_1_upper,diff_avg_period1,proposed_cycle_period_1)
       colnames(df_error_tmp_period1) <- c("period1_start","period1_end", "period1_error","period1_proposed")
@@ -495,11 +495,11 @@ if(maximum_periods == 5){
         if(period_2_upper <= 1440){
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           df_error_tmp_period2 <- data.frame(period_2_lower,period_2_upper,diff_avg_period2,proposed_cycle_period_2)
           colnames(df_error_tmp_period2) <- c("period2_start","period2_end", "period2_error","period2_proposed")
@@ -510,11 +510,11 @@ if(maximum_periods == 5){
             if(period_3_upper <= 1440){
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               df_error_tmp_period3 <- data.frame(period_3_lower,period_3_upper,diff_avg_period3,proposed_cycle_period_3)
               colnames(df_error_tmp_period3) <- c("period3_start","period3_end", "period3_error","period3_proposed")
@@ -525,11 +525,11 @@ if(maximum_periods == 5){
                 if(period_4_upper <= 1440){
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   df_error_tmp_period4 <- data.frame(period_4_lower,period_4_upper,diff_avg_period4,proposed_cycle_period_4)
                   colnames(df_error_tmp_period4) <- c("period4_start","period4_end", "period4_error","period4_proposed")
@@ -543,11 +543,11 @@ if(maximum_periods == 5){
                 if(period_5_upper == 1440){
                   df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                   colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                   colnames(df_proposed_cycle_5) <- c("proposed")
                   df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                  diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                  diff_avg_period5 <- mean(df_subset_period_5$diff)
                   
                   df_error_tmp_period5 <- data.frame(period_5_lower,period_5_upper,diff_avg_period5,proposed_cycle_period_5)
                   colnames(df_error_tmp_period5) <- c("period5_start","period5_end", "period5_error","period5_proposed")
@@ -564,11 +564,11 @@ if(maximum_periods == 5){
                   
                   df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                   colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                   colnames(df_proposed_cycle_5) <- c("proposed")
                   df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                  diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                  diff_avg_period5 <- mean(df_subset_period_5$diff)
                   
                   df_error_tmp_period5 <- data.frame(period_5_lower,period_5_upper,diff_avg_period5,proposed_cycle_period_5)
                   colnames(df_error_tmp_period5) <- c("period5_start","period5_end", "period5_error","period5_proposed")
@@ -593,11 +593,11 @@ if(maximum_periods == 5){
                   period_5_upper <- 1440
                   df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                   colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                   colnames(df_proposed_cycle_5) <- c("proposed")
                   df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                  diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                  diff_avg_period5 <- mean(df_subset_period_5$diff)
                   
                   # df_error <- data.frame(matrix(ncol = 9, nrow = 0))
                   # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error","period3_start","period3_end", "period3_error")
@@ -617,11 +617,11 @@ if(maximum_periods == 5){
                   period_4_upper <- 1440
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                   # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -641,11 +641,11 @@ if(maximum_periods == 5){
               period_3_upper <- 1440
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -667,11 +667,11 @@ if(maximum_periods == 5){
           period_2_upper <- 1440
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -761,11 +761,11 @@ if(maximum_periods == 6){
       
       df_subset_period_1 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_1_lower & df$time < period_1_upper])
       colnames(df_subset_period_1) <- c("Nominal_Cycle_Length")
-      proposed_cycle_period_1 <- as.integer(mean(df_subset_period_1$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+      proposed_cycle_period_1 <- as.integer(quantile(df_subset_period_1$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
       df_proposed_cycle_1 <- as.data.frame(rep(proposed_cycle_period_1,times = nrow(df_subset_period_1)))
       colnames(df_proposed_cycle_1) <- c("proposed")
       df_subset_period_1$diff <- abs(df_subset_period_1$Nominal_Cycle_Length - df_proposed_cycle_1$proposed)
-      diff_avg_period1 <- quantile(df_subset_period_1$diff, prob = percentile)
+      diff_avg_period1 <- mean(df_subset_period_1$diff)
       
       df_error_tmp_period1 <- data.frame(period_1_lower,period_1_upper,diff_avg_period1,proposed_cycle_period_1)
       colnames(df_error_tmp_period1) <- c("period1_start","period1_end", "period1_error","period1_proposed")
@@ -779,11 +779,11 @@ if(maximum_periods == 6){
         if(period_2_upper <= 1440){
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           df_error_tmp_period2 <- data.frame(period_2_lower,period_2_upper,diff_avg_period2,proposed_cycle_period_2)
           colnames(df_error_tmp_period2) <- c("period2_start","period2_end", "period2_error","period2_proposed")
@@ -794,11 +794,11 @@ if(maximum_periods == 6){
             if(period_3_upper <= 1440){
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               df_error_tmp_period3 <- data.frame(period_3_lower,period_3_upper,diff_avg_period3,proposed_cycle_period_3)
               colnames(df_error_tmp_period3) <- c("period3_start","period3_end", "period3_error","period3_proposed")
@@ -809,11 +809,11 @@ if(maximum_periods == 6){
                 if(period_4_upper <= 1440){
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   df_error_tmp_period4 <- data.frame(period_4_lower,period_4_upper,diff_avg_period4,proposed_cycle_period_4)
                   colnames(df_error_tmp_period4) <- c("period4_start","period4_end", "period4_error","period4_proposed")
@@ -824,11 +824,11 @@ if(maximum_periods == 6){
                     if(period_5_upper <= 1440){
                       df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                       colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                       colnames(df_proposed_cycle_5) <- c("proposed")
                       df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                      diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                      diff_avg_period5 <- mean(df_subset_period_5$diff)
                       
                       df_error_tmp_period5 <- data.frame(period_5_lower,period_5_upper,diff_avg_period5,proposed_cycle_period_5)
                       colnames(df_error_tmp_period5) <- c("period5_start","period5_end", "period5_error","period5_proposed")
@@ -841,11 +841,11 @@ if(maximum_periods == 6){
                     if(period_6_upper == 1440){
                       df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                       colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                       colnames(df_proposed_cycle_6) <- c("proposed")
                       df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                      diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                      diff_avg_period6 <- mean(df_subset_period_6$diff)
                       
                       df_error_tmp_period6 <- data.frame(period_6_lower,period_6_upper,diff_avg_period6,proposed_cycle_period_6)
                       colnames(df_error_tmp_period6) <- c("period6_start","period6_end", "period6_error","period6_proposed")
@@ -862,11 +862,11 @@ if(maximum_periods == 6){
                       
                       df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                       colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                       colnames(df_proposed_cycle_6) <- c("proposed")
                       df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                      diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                      diff_avg_period6 <- mean(df_subset_period_6$diff)
                       
                       df_error_tmp_period6 <- data.frame(period_6_lower,period_6_upper,diff_avg_period6,proposed_cycle_period_6)
                       colnames(df_error_tmp_period6) <- c("period6_start","period6_end", "period6_error","period6_proposed")
@@ -891,11 +891,11 @@ if(maximum_periods == 6){
                       period_6_upper <- 1440
                       df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                       colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                       colnames(df_proposed_cycle_6) <- c("proposed")
                       df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                      diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                      diff_avg_period6 <- mean(df_subset_period_6$diff)
                       
                       # df_error <- data.frame(matrix(ncol = 9, nrow = 0))
                       # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error","period3_start","period3_end", "period3_error")
@@ -915,11 +915,11 @@ if(maximum_periods == 6){
                       period_5_upper <- 1440
                       df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                       colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                       colnames(df_proposed_cycle_5) <- c("proposed")
                       df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                      diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                      diff_avg_period5 <- mean(df_subset_period_5$diff)
                       
                       # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                       # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -939,11 +939,11 @@ if(maximum_periods == 6){
                   period_4_upper <- 1440
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                   # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -965,11 +965,11 @@ if(maximum_periods == 6){
               period_3_upper <- 1440
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -992,11 +992,11 @@ if(maximum_periods == 6){
           period_2_upper <- 1440
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1092,11 +1092,11 @@ if(maximum_periods == 7){
       
       df_subset_period_1 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_1_lower & df$time < period_1_upper])
       colnames(df_subset_period_1) <- c("Nominal_Cycle_Length")
-      proposed_cycle_period_1 <- as.integer(mean(df_subset_period_1$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+      proposed_cycle_period_1 <- as.integer(quantile(df_subset_period_1$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
       df_proposed_cycle_1 <- as.data.frame(rep(proposed_cycle_period_1,times = nrow(df_subset_period_1)))
       colnames(df_proposed_cycle_1) <- c("proposed")
       df_subset_period_1$diff <- abs(df_subset_period_1$Nominal_Cycle_Length - df_proposed_cycle_1$proposed)
-      diff_avg_period1 <- quantile(df_subset_period_1$diff, prob = percentile)
+      diff_avg_period1 <- mean(df_subset_period_1$diff)
       
       df_error_tmp_period1 <- data.frame(period_1_lower,period_1_upper,diff_avg_period1,proposed_cycle_period_1)
       colnames(df_error_tmp_period1) <- c("period1_start","period1_end", "period1_error","period1_proposed")
@@ -1110,11 +1110,11 @@ if(maximum_periods == 7){
         if(period_2_upper <= 1440){
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           df_error_tmp_period2 <- data.frame(period_2_lower,period_2_upper,diff_avg_period2,proposed_cycle_period_2)
           colnames(df_error_tmp_period2) <- c("period2_start","period2_end", "period2_error","period2_proposed")
@@ -1125,11 +1125,11 @@ if(maximum_periods == 7){
             if(period_3_upper <= 1440){
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               df_error_tmp_period3 <- data.frame(period_3_lower,period_3_upper,diff_avg_period3,proposed_cycle_period_3)
               colnames(df_error_tmp_period3) <- c("period3_start","period3_end", "period3_error","period3_proposed")
@@ -1140,11 +1140,11 @@ if(maximum_periods == 7){
                 if(period_4_upper <= 1440){
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   df_error_tmp_period4 <- data.frame(period_4_lower,period_4_upper,diff_avg_period4,proposed_cycle_period_4)
                   colnames(df_error_tmp_period4) <- c("period4_start","period4_end", "period4_error","period4_proposed")
@@ -1155,11 +1155,11 @@ if(maximum_periods == 7){
                     if(period_5_upper <= 1440){
                       df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                       colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                       colnames(df_proposed_cycle_5) <- c("proposed")
                       df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                      diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                      diff_avg_period5 <- mean(df_subset_period_5$diff)
                       
                       df_error_tmp_period5 <- data.frame(period_5_lower,period_5_upper,diff_avg_period5,proposed_cycle_period_5)
                       colnames(df_error_tmp_period5) <- c("period5_start","period5_end", "period5_error","period5_proposed")
@@ -1170,11 +1170,11 @@ if(maximum_periods == 7){
                         if(period_6_upper <= 1440){
                           df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                           colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                          proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                           df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                           colnames(df_proposed_cycle_6) <- c("proposed")
                           df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                          diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                          diff_avg_period6 <- mean(df_subset_period_6$diff)
                           
                           df_error_tmp_period6 <- data.frame(period_6_lower,period_6_upper,diff_avg_period6,proposed_cycle_period_6)
                           colnames(df_error_tmp_period6) <- c("period6_start","period6_end", "period6_error","period6_proposed")
@@ -1187,11 +1187,11 @@ if(maximum_periods == 7){
                         if(period_7_upper == 1440){
                           df_subset_period_7 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_7_lower & df$time < period_7_upper])
                           colnames(df_subset_period_7) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_7 <- as.integer(mean(df_subset_period_7$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                          proposed_cycle_period_7 <- as.integer(quantile(df_subset_period_7$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                           df_proposed_cycle_7 <- as.data.frame(rep(proposed_cycle_period_7,times = nrow(df_subset_period_7)))
                           colnames(df_proposed_cycle_7) <- c("proposed")
                           df_subset_period_7$diff <- abs(df_subset_period_7$Nominal_Cycle_Length - df_proposed_cycle_7$proposed)
-                          diff_avg_period7 <- quantile(df_subset_period_7$diff, prob = percentile)
+                          diff_avg_period7 <- mean(df_subset_period_7$diff)
                           
                           df_error_tmp_period7 <- data.frame(period_7_lower,period_7_upper,diff_avg_period7,proposed_cycle_period_7)
                           colnames(df_error_tmp_period7) <- c("period7_start","period7_end", "period7_error","period7_proposed")
@@ -1208,11 +1208,11 @@ if(maximum_periods == 7){
                           
                           df_subset_period_7 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_7_lower & df$time < period_7_upper])
                           colnames(df_subset_period_7) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_7 <- as.integer(mean(df_subset_period_7$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                          proposed_cycle_period_7 <- as.integer(quantile(df_subset_period_7$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                           df_proposed_cycle_7 <- as.data.frame(rep(proposed_cycle_period_7,times = nrow(df_subset_period_7)))
                           colnames(df_proposed_cycle_7) <- c("proposed")
                           df_subset_period_7$diff <- abs(df_subset_period_7$Nominal_Cycle_Length - df_proposed_cycle_7$proposed)
-                          diff_avg_period7 <- quantile(df_subset_period_7$diff, prob = percentile)
+                          diff_avg_period7 <- mean(df_subset_period_7$diff)
                           
                           df_error_tmp_period7 <- data.frame(period_7_lower,period_7_upper,diff_avg_period7,proposed_cycle_period_7)
                           colnames(df_error_tmp_period7) <- c("period7_start","period7_end", "period7_error","period7_proposed")
@@ -1237,11 +1237,11 @@ if(maximum_periods == 7){
                           period_7_upper <- 1440
                           df_subset_period_7 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_7_lower & df$time < period_7_upper])
                           colnames(df_subset_period_7) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_7 <- as.integer(mean(df_subset_period_7$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                          proposed_cycle_period_7 <- as.integer(quantile(df_subset_period_7$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                           df_proposed_cycle_7 <- as.data.frame(rep(proposed_cycle_period_7,times = nrow(df_subset_period_7)))
                           colnames(df_proposed_cycle_7) <- c("proposed")
                           df_subset_period_7$diff <- abs(df_subset_period_7$Nominal_Cycle_Length - df_proposed_cycle_7$proposed)
-                          diff_avg_period7 <- quantile(df_subset_period_7$diff, prob = percentile)
+                          diff_avg_period7 <- mean(df_subset_period_7$diff)
                           
                           # df_error <- data.frame(matrix(ncol = 9, nrow = 0))
                           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error","period3_start","period3_end", "period3_error")
@@ -1260,11 +1260,11 @@ if(maximum_periods == 7){
                         period_6_upper <- 1440
                         df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                         colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                        proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                        proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                         df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                         colnames(df_proposed_cycle_6) <- c("proposed")
                         df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                        diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                        diff_avg_period6 <- mean(df_subset_period_6$diff)
                         
                         # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                         # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1285,11 +1285,11 @@ if(maximum_periods == 7){
                       period_5_upper <- 1440
                       df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                       colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                       colnames(df_proposed_cycle_5) <- c("proposed")
                       df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                      diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                      diff_avg_period5 <- mean(df_subset_period_5$diff)
                       
                       # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                       # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1310,11 +1310,11 @@ if(maximum_periods == 7){
                   period_4_upper <- 1440
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                   # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1337,11 +1337,11 @@ if(maximum_periods == 7){
               period_3_upper <- 1440
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1365,11 +1365,11 @@ if(maximum_periods == 7){
           period_2_upper <- 1440
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1473,11 +1473,11 @@ if(maximum_periods == 8){
       
       df_subset_period_1 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_1_lower & df$time < period_1_upper])
       colnames(df_subset_period_1) <- c("Nominal_Cycle_Length")
-      proposed_cycle_period_1 <- as.integer(mean(df_subset_period_1$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+      proposed_cycle_period_1 <- as.integer(quantile(df_subset_period_1$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
       df_proposed_cycle_1 <- as.data.frame(rep(proposed_cycle_period_1,times = nrow(df_subset_period_1)))
       colnames(df_proposed_cycle_1) <- c("proposed")
       df_subset_period_1$diff <- abs(df_subset_period_1$Nominal_Cycle_Length - df_proposed_cycle_1$proposed)
-      diff_avg_period1 <- quantile(df_subset_period_1$diff, prob = percentile)
+      diff_avg_period1 <- mean(df_subset_period_1$diff)
       
       df_error_tmp_period1 <- data.frame(period_1_lower,period_1_upper,diff_avg_period1,proposed_cycle_period_1)
       colnames(df_error_tmp_period1) <- c("period1_start","period1_end", "period1_error","period1_proposed")
@@ -1491,11 +1491,11 @@ if(maximum_periods == 8){
         if(period_2_upper <= 1440){
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           df_error_tmp_period2 <- data.frame(period_2_lower,period_2_upper,diff_avg_period2,proposed_cycle_period_2)
           colnames(df_error_tmp_period2) <- c("period2_start","period2_end", "period2_error","period2_proposed")
@@ -1506,11 +1506,11 @@ if(maximum_periods == 8){
             if(period_3_upper <= 1440){
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               df_error_tmp_period3 <- data.frame(period_3_lower,period_3_upper,diff_avg_period3,proposed_cycle_period_3)
               colnames(df_error_tmp_period3) <- c("period3_start","period3_end", "period3_error","period3_proposed")
@@ -1521,11 +1521,11 @@ if(maximum_periods == 8){
                 if(period_4_upper <= 1440){
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   df_error_tmp_period4 <- data.frame(period_4_lower,period_4_upper,diff_avg_period4,proposed_cycle_period_4)
                   colnames(df_error_tmp_period4) <- c("period4_start","period4_end", "period4_error","period4_proposed")
@@ -1536,11 +1536,11 @@ if(maximum_periods == 8){
                     if(period_5_upper <= 1440){
                       df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                       colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                       colnames(df_proposed_cycle_5) <- c("proposed")
                       df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                      diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                      diff_avg_period5 <- mean(df_subset_period_5$diff)
                       
                       df_error_tmp_period5 <- data.frame(period_5_lower,period_5_upper,diff_avg_period5,proposed_cycle_period_5)
                       colnames(df_error_tmp_period5) <- c("period5_start","period5_end", "period5_error","period5_proposed")
@@ -1551,11 +1551,11 @@ if(maximum_periods == 8){
                         if(period_6_upper <= 1440){
                           df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                           colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                          proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                           df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                           colnames(df_proposed_cycle_6) <- c("proposed")
                           df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                          diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                          diff_avg_period6 <- mean(df_subset_period_6$diff)
                           
                           df_error_tmp_period6 <- data.frame(period_6_lower,period_6_upper,diff_avg_period6,proposed_cycle_period_6)
                           colnames(df_error_tmp_period6) <- c("period6_start","period6_end", "period6_error","period6_proposed")
@@ -1566,11 +1566,11 @@ if(maximum_periods == 8){
                             if(period_7_upper <= 1440){
                               df_subset_period_7 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_7_lower & df$time < period_7_upper])
                               colnames(df_subset_period_7) <- c("Nominal_Cycle_Length")
-                              proposed_cycle_period_7 <- as.integer(mean(df_subset_period_7$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                              proposed_cycle_period_7 <- as.integer(quantile(df_subset_period_7$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                               df_proposed_cycle_7 <- as.data.frame(rep(proposed_cycle_period_7,times = nrow(df_subset_period_7)))
                               colnames(df_proposed_cycle_7) <- c("proposed")
                               df_subset_period_7$diff <- abs(df_subset_period_7$Nominal_Cycle_Length - df_proposed_cycle_7$proposed)
-                              diff_avg_period7 <- quantile(df_subset_period_7$diff, prob = percentile)
+                              diff_avg_period7 <- mean(df_subset_period_7$diff)
                               
                               df_error_tmp_period7 <- data.frame(period_7_lower,period_7_upper,diff_avg_period7,proposed_cycle_period_7)
                               colnames(df_error_tmp_period7) <- c("period7_start","period7_end", "period7_error","period7_proposed")
@@ -1583,11 +1583,11 @@ if(maximum_periods == 8){
                             if(period_8_upper == 1440){
                               df_subset_period_8 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_8_lower & df$time < period_8_upper])
                               colnames(df_subset_period_8) <- c("Nominal_Cycle_Length")
-                              proposed_cycle_period_8 <- as.integer(mean(df_subset_period_8$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                              proposed_cycle_period_8 <- as.integer(quantile(df_subset_period_8$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                               df_proposed_cycle_8 <- as.data.frame(rep(proposed_cycle_period_8,times = nrow(df_subset_period_8)))
                               colnames(df_proposed_cycle_8) <- c("proposed")
                               df_subset_period_8$diff <- abs(df_subset_period_8$Nominal_Cycle_Length - df_proposed_cycle_8$proposed)
-                              diff_avg_period8 <- quantile(df_subset_period_8$diff, prob = percentile)
+                              diff_avg_period8 <- mean(df_subset_period_8$diff)
                               
                               df_error_tmp_period8 <- data.frame(period_8_lower,period_8_upper,diff_avg_period8,proposed_cycle_period_8)
                               colnames(df_error_tmp_period8) <- c("period8_start","period8_end", "period8_error","period8_proposed")
@@ -1604,11 +1604,11 @@ if(maximum_periods == 8){
                               
                               df_subset_period_8 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_8_lower & df$time < period_8_upper])
                               colnames(df_subset_period_8) <- c("Nominal_Cycle_Length")
-                              proposed_cycle_period_8 <- as.integer(mean(df_subset_period_8$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                              proposed_cycle_period_8 <- as.integer(quantile(df_subset_period_8$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                               df_proposed_cycle_8 <- as.data.frame(rep(proposed_cycle_period_8,times = nrow(df_subset_period_8)))
                               colnames(df_proposed_cycle_8) <- c("proposed")
                               df_subset_period_8$diff <- abs(df_subset_period_8$Nominal_Cycle_Length - df_proposed_cycle_8$proposed)
-                              diff_avg_period8 <- quantile(df_subset_period_8$diff, prob = percentile)
+                              diff_avg_period8 <- mean(df_subset_period_8$diff)
                               
                               df_error_tmp_period8 <- data.frame(period_8_lower,period_8_upper,diff_avg_period8,proposed_cycle_period_8)
                               colnames(df_error_tmp_period8) <- c("period8_start","period8_end", "period8_error","period8_proposed")
@@ -1633,11 +1633,11 @@ if(maximum_periods == 8){
                               period_8_upper <- 1440
                               df_subset_period_8 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_8_lower & df$time < period_8_upper])
                               colnames(df_subset_period_8) <- c("Nominal_Cycle_Length")
-                              proposed_cycle_period_8 <- as.integer(mean(df_subset_period_8$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                              proposed_cycle_period_8 <- as.integer(quantile(df_subset_period_8$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                               df_proposed_cycle_8 <- as.data.frame(rep(proposed_cycle_period_8,times = nrow(df_subset_period_8)))
                               colnames(df_proposed_cycle_8) <- c("proposed")
                               df_subset_period_8$diff <- abs(df_subset_period_8$Nominal_Cycle_Length - df_proposed_cycle_8$proposed)
-                              diff_avg_period8 <- quantile(df_subset_period_8$diff, prob = percentile)
+                              diff_avg_period8 <- mean(df_subset_period_8$diff)
                               
                               # df_error <- data.frame(matrix(ncol = 9, nrow = 0))
                               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error","period3_start","period3_end", "period3_error")
@@ -1656,11 +1656,11 @@ if(maximum_periods == 8){
                               period_7_upper <- 1440
                               df_subset_period_7 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_7_lower & df$time < period_7_upper])
                               colnames(df_subset_period_7) <- c("Nominal_Cycle_Length")
-                              proposed_cycle_period_7 <- as.integer(mean(df_subset_period_7$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                              proposed_cycle_period_7 <- as.integer(quantile(df_subset_period_7$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                               df_proposed_cycle_7 <- as.data.frame(rep(proposed_cycle_period_7,times = nrow(df_subset_period_7)))
                               colnames(df_proposed_cycle_7) <- c("proposed")
                               df_subset_period_7$diff <- abs(df_subset_period_7$Nominal_Cycle_Length - df_proposed_cycle_7$proposed)
-                              diff_avg_period7 <- quantile(df_subset_period_7$diff, prob = percentile)
+                              diff_avg_period7 <- mean(df_subset_period_7$diff)
                               
                               # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1680,11 +1680,11 @@ if(maximum_periods == 8){
                           period_6_upper <- 1440
                           df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                           colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                          proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                           df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                           colnames(df_proposed_cycle_6) <- c("proposed")
                           df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                          diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                          diff_avg_period6 <- mean(df_subset_period_6$diff)
                           
                           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1706,11 +1706,11 @@ if(maximum_periods == 8){
                       period_5_upper <- 1440
                       df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                       colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                       colnames(df_proposed_cycle_5) <- c("proposed")
                       df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                      diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                      diff_avg_period5 <- mean(df_subset_period_5$diff)
                       
                       # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                       # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1732,11 +1732,11 @@ if(maximum_periods == 8){
                   period_4_upper <- 1440
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                   # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1760,11 +1760,11 @@ if(maximum_periods == 8){
               period_3_upper <- 1440
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1789,11 +1789,11 @@ if(maximum_periods == 8){
           period_2_upper <- 1440
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -1904,11 +1904,11 @@ if(maximum_periods == 9){
       
       df_subset_period_1 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_1_lower & df$time < period_1_upper])
       colnames(df_subset_period_1) <- c("Nominal_Cycle_Length")
-      proposed_cycle_period_1 <- as.integer(mean(df_subset_period_1$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+      proposed_cycle_period_1 <- as.integer(quantile(df_subset_period_1$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
       df_proposed_cycle_1 <- as.data.frame(rep(proposed_cycle_period_1,times = nrow(df_subset_period_1)))
       colnames(df_proposed_cycle_1) <- c("proposed")
       df_subset_period_1$diff <- abs(df_subset_period_1$Nominal_Cycle_Length - df_proposed_cycle_1$proposed)
-      diff_avg_period1 <- quantile(df_subset_period_1$diff, prob = percentile)
+      diff_avg_period1 <- mean(df_subset_period_1$diff)
       
       df_error_tmp_period1 <- data.frame(period_1_lower,period_1_upper,diff_avg_period1,proposed_cycle_period_1)
       colnames(df_error_tmp_period1) <- c("period1_start","period1_end", "period1_error","period1_proposed")
@@ -1922,11 +1922,11 @@ if(maximum_periods == 9){
         if(period_2_upper <= 1440){
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           df_error_tmp_period2 <- data.frame(period_2_lower,period_2_upper,diff_avg_period2,proposed_cycle_period_2)
           colnames(df_error_tmp_period2) <- c("period2_start","period2_end", "period2_error","period2_proposed")
@@ -1937,11 +1937,11 @@ if(maximum_periods == 9){
             if(period_3_upper <= 1440){
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               df_error_tmp_period3 <- data.frame(period_3_lower,period_3_upper,diff_avg_period3,proposed_cycle_period_3)
               colnames(df_error_tmp_period3) <- c("period3_start","period3_end", "period3_error","period3_proposed")
@@ -1952,11 +1952,11 @@ if(maximum_periods == 9){
                 if(period_4_upper <= 1440){
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   df_error_tmp_period4 <- data.frame(period_4_lower,period_4_upper,diff_avg_period4,proposed_cycle_period_4)
                   colnames(df_error_tmp_period4) <- c("period4_start","period4_end", "period4_error","period4_proposed")
@@ -1967,11 +1967,11 @@ if(maximum_periods == 9){
                     if(period_5_upper <= 1440){
                       df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                       colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                       colnames(df_proposed_cycle_5) <- c("proposed")
                       df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                      diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                      diff_avg_period5 <- mean(df_subset_period_5$diff)
                       
                       df_error_tmp_period5 <- data.frame(period_5_lower,period_5_upper,diff_avg_period5,proposed_cycle_period_5)
                       colnames(df_error_tmp_period5) <- c("period5_start","period5_end", "period5_error","period5_proposed")
@@ -1982,11 +1982,11 @@ if(maximum_periods == 9){
                         if(period_6_upper <= 1440){
                           df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                           colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                          proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                           df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                           colnames(df_proposed_cycle_6) <- c("proposed")
                           df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                          diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                          diff_avg_period6 <- mean(df_subset_period_6$diff)
                           
                           df_error_tmp_period6 <- data.frame(period_6_lower,period_6_upper,diff_avg_period6,proposed_cycle_period_6)
                           colnames(df_error_tmp_period6) <- c("period6_start","period6_end", "period6_error","period6_proposed")
@@ -1997,11 +1997,11 @@ if(maximum_periods == 9){
                             if(period_7_upper <= 1440){
                               df_subset_period_7 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_7_lower & df$time < period_7_upper])
                               colnames(df_subset_period_7) <- c("Nominal_Cycle_Length")
-                              proposed_cycle_period_7 <- as.integer(mean(df_subset_period_7$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                              proposed_cycle_period_7 <- as.integer(quantile(df_subset_period_7$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                               df_proposed_cycle_7 <- as.data.frame(rep(proposed_cycle_period_7,times = nrow(df_subset_period_7)))
                               colnames(df_proposed_cycle_7) <- c("proposed")
                               df_subset_period_7$diff <- abs(df_subset_period_7$Nominal_Cycle_Length - df_proposed_cycle_7$proposed)
-                              diff_avg_period7 <- quantile(df_subset_period_7$diff, prob = percentile)
+                              diff_avg_period7 <- mean(df_subset_period_7$diff)
                               
                               df_error_tmp_period7 <- data.frame(period_7_lower,period_7_upper,diff_avg_period7,proposed_cycle_period_7)
                               colnames(df_error_tmp_period7) <- c("period7_start","period7_end", "period7_error","period7_proposed")
@@ -2012,11 +2012,11 @@ if(maximum_periods == 9){
                                 if(period_8_upper <= 1440){
                                   df_subset_period_8 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_8_lower & df$time < period_8_upper])
                                   colnames(df_subset_period_8) <- c("Nominal_Cycle_Length")
-                                  proposed_cycle_period_8 <- as.integer(mean(df_subset_period_8$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                                  proposed_cycle_period_8 <- as.integer(quantile(df_subset_period_8$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                                   df_proposed_cycle_8 <- as.data.frame(rep(proposed_cycle_period_8,times = nrow(df_subset_period_8)))
                                   colnames(df_proposed_cycle_8) <- c("proposed")
                                   df_subset_period_8$diff <- abs(df_subset_period_8$Nominal_Cycle_Length - df_proposed_cycle_8$proposed)
-                                  diff_avg_period8 <- quantile(df_subset_period_8$diff, prob = percentile)
+                                  diff_avg_period8 <- mean(df_subset_period_8$diff)
                                   
                                   df_error_tmp_period8 <- data.frame(period_8_lower,period_8_upper,diff_avg_period8,proposed_cycle_period_8)
                                   colnames(df_error_tmp_period8) <- c("period8_start","period8_end", "period8_error","period8_proposed")
@@ -2028,11 +2028,11 @@ if(maximum_periods == 9){
                                 if(period_9_upper == 1440){
                                   df_subset_period_9 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_9_lower & df$time < period_9_upper])
                                   colnames(df_subset_period_9) <- c("Nominal_Cycle_Length")
-                                  proposed_cycle_period_9 <- as.integer(mean(df_subset_period_9$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                                  proposed_cycle_period_9 <- as.integer(quantile(df_subset_period_9$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                                   df_proposed_cycle_9 <- as.data.frame(rep(proposed_cycle_period_9,times = nrow(df_subset_period_9)))
                                   colnames(df_proposed_cycle_9) <- c("proposed")
                                   df_subset_period_9$diff <- abs(df_subset_period_9$Nominal_Cycle_Length - df_proposed_cycle_9$proposed)
-                                  diff_avg_period9 <- quantile(df_subset_period_9$diff, prob = percentile)
+                                  diff_avg_period9 <- mean(df_subset_period_9$diff)
                                   
                                   df_error_tmp_period9 <- data.frame(period_9_lower,period_9_upper,diff_avg_period9,proposed_cycle_period_9)
                                   colnames(df_error_tmp_period9) <- c("period9_start","period9_end", "period9_error","period9_proposed")
@@ -2049,11 +2049,11 @@ if(maximum_periods == 9){
                                   
                                   df_subset_period_9 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_9_lower & df$time < period_9_upper])
                                   colnames(df_subset_period_9) <- c("Nominal_Cycle_Length")
-                                  proposed_cycle_period_9 <- as.integer(mean(df_subset_period_9$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                                  proposed_cycle_period_9 <- as.integer(quantile(df_subset_period_9$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                                   df_proposed_cycle_9 <- as.data.frame(rep(proposed_cycle_period_9,times = nrow(df_subset_period_9)))
                                   colnames(df_proposed_cycle_9) <- c("proposed")
                                   df_subset_period_9$diff <- abs(df_subset_period_9$Nominal_Cycle_Length - df_proposed_cycle_9$proposed)
-                                  diff_avg_period9 <- quantile(df_subset_period_9$diff, prob = percentile)
+                                  diff_avg_period9 <- mean(df_subset_period_9$diff)
                                   
                                   df_error_tmp_period9 <- data.frame(period_9_lower,period_9_upper,diff_avg_period9,proposed_cycle_period_9)
                                   colnames(df_error_tmp_period9) <- c("period9_start","period9_end", "period9_error","period9_proposed")
@@ -2078,11 +2078,11 @@ if(maximum_periods == 9){
                                   period_9_upper <- 1440
                                   df_subset_period_9 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_9_lower & df$time < period_9_upper])
                                   colnames(df_subset_period_9) <- c("Nominal_Cycle_Length")
-                                  proposed_cycle_period_9 <- as.integer(mean(df_subset_period_9$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                                  proposed_cycle_period_9 <- as.integer(quantile(df_subset_period_9$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                                   df_proposed_cycle_9 <- as.data.frame(rep(proposed_cycle_period_9,times = nrow(df_subset_period_9)))
                                   colnames(df_proposed_cycle_9) <- c("proposed")
                                   df_subset_period_9$diff <- abs(df_subset_period_9$Nominal_Cycle_Length - df_proposed_cycle_9$proposed)
-                                  diff_avg_period9 <- quantile(df_subset_period_9$diff, prob = percentile)
+                                  diff_avg_period9 <- mean(df_subset_period_9$diff)
                                   
                                   # df_error <- data.frame(matrix(ncol = 9, nrow = 0))
                                   # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error","period3_start","period3_end", "period3_error")
@@ -2101,11 +2101,11 @@ if(maximum_periods == 9){
                                   period_8_upper <- 1440
                                   df_subset_period_8 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_8_lower & df$time < period_8_upper])
                                   colnames(df_subset_period_8) <- c("Nominal_Cycle_Length")
-                                  proposed_cycle_period_8 <- as.integer(mean(df_subset_period_8$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                                  proposed_cycle_period_8 <- as.integer(quantile(df_subset_period_8$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                                   df_proposed_cycle_8 <- as.data.frame(rep(proposed_cycle_period_8,times = nrow(df_subset_period_8)))
                                   colnames(df_proposed_cycle_8) <- c("proposed")
                                   df_subset_period_8$diff <- abs(df_subset_period_8$Nominal_Cycle_Length - df_proposed_cycle_8$proposed)
-                                  diff_avg_period8 <- quantile(df_subset_period_8$diff, prob = percentile)
+                                  diff_avg_period8 <- mean(df_subset_period_8$diff)
                                   
                                   # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                                   # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -2125,11 +2125,11 @@ if(maximum_periods == 9){
                               period_7_upper <- 1440
                               df_subset_period_7 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_7_lower & df$time < period_7_upper])
                               colnames(df_subset_period_7) <- c("Nominal_Cycle_Length")
-                              proposed_cycle_period_7 <- as.integer(mean(df_subset_period_7$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                              proposed_cycle_period_7 <- as.integer(quantile(df_subset_period_7$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                               df_proposed_cycle_7 <- as.data.frame(rep(proposed_cycle_period_7,times = nrow(df_subset_period_7)))
                               colnames(df_proposed_cycle_7) <- c("proposed")
                               df_subset_period_7$diff <- abs(df_subset_period_7$Nominal_Cycle_Length - df_proposed_cycle_7$proposed)
-                              diff_avg_period7 <- quantile(df_subset_period_7$diff, prob = percentile)
+                              diff_avg_period7 <- mean(df_subset_period_7$diff)
                               
                               # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -2150,11 +2150,11 @@ if(maximum_periods == 9){
                           period_6_upper <- 1440
                           df_subset_period_6 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_6_lower & df$time < period_6_upper])
                           colnames(df_subset_period_6) <- c("Nominal_Cycle_Length")
-                          proposed_cycle_period_6 <- as.integer(mean(df_subset_period_6$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                          proposed_cycle_period_6 <- as.integer(quantile(df_subset_period_6$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                           df_proposed_cycle_6 <- as.data.frame(rep(proposed_cycle_period_6,times = nrow(df_subset_period_6)))
                           colnames(df_proposed_cycle_6) <- c("proposed")
                           df_subset_period_6$diff <- abs(df_subset_period_6$Nominal_Cycle_Length - df_proposed_cycle_6$proposed)
-                          diff_avg_period6 <- quantile(df_subset_period_6$diff, prob = percentile)
+                          diff_avg_period6 <- mean(df_subset_period_6$diff)
                           
                           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -2177,11 +2177,11 @@ if(maximum_periods == 9){
                       period_5_upper <- 1440
                       df_subset_period_5 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_5_lower & df$time < period_5_upper])
                       colnames(df_subset_period_5) <- c("Nominal_Cycle_Length")
-                      proposed_cycle_period_5 <- as.integer(mean(df_subset_period_5$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                      proposed_cycle_period_5 <- as.integer(quantile(df_subset_period_5$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                       df_proposed_cycle_5 <- as.data.frame(rep(proposed_cycle_period_5,times = nrow(df_subset_period_5)))
                       colnames(df_proposed_cycle_5) <- c("proposed")
                       df_subset_period_5$diff <- abs(df_subset_period_5$Nominal_Cycle_Length - df_proposed_cycle_5$proposed)
-                      diff_avg_period5 <- quantile(df_subset_period_5$diff, prob = percentile)
+                      diff_avg_period5 <- mean(df_subset_period_5$diff)
                       
                       # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                       # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -2204,11 +2204,11 @@ if(maximum_periods == 9){
                   period_4_upper <- 1440
                   df_subset_period_4 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_4_lower & df$time < period_4_upper])
                   colnames(df_subset_period_4) <- c("Nominal_Cycle_Length")
-                  proposed_cycle_period_4 <- as.integer(mean(df_subset_period_4$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+                  proposed_cycle_period_4 <- as.integer(quantile(df_subset_period_4$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
                   df_proposed_cycle_4 <- as.data.frame(rep(proposed_cycle_period_4,times = nrow(df_subset_period_4)))
                   colnames(df_proposed_cycle_4) <- c("proposed")
                   df_subset_period_4$diff <- abs(df_subset_period_4$Nominal_Cycle_Length - df_proposed_cycle_4$proposed)
-                  diff_avg_period4 <- quantile(df_subset_period_4$diff, prob = percentile)
+                  diff_avg_period4 <- mean(df_subset_period_4$diff)
                   
                   # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
                   # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -2233,11 +2233,11 @@ if(maximum_periods == 9){
               period_3_upper <- 1440
               df_subset_period_3 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_3_lower & df$time < period_3_upper])
               colnames(df_subset_period_3) <- c("Nominal_Cycle_Length")
-              proposed_cycle_period_3 <- as.integer(mean(df_subset_period_3$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+              proposed_cycle_period_3 <- as.integer(quantile(df_subset_period_3$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
               df_proposed_cycle_3 <- as.data.frame(rep(proposed_cycle_period_3,times = nrow(df_subset_period_3)))
               colnames(df_proposed_cycle_3) <- c("proposed")
               df_subset_period_3$diff <- abs(df_subset_period_3$Nominal_Cycle_Length - df_proposed_cycle_3$proposed)
-              diff_avg_period3 <- quantile(df_subset_period_3$diff, prob = percentile)
+              diff_avg_period3 <- mean(df_subset_period_3$diff)
               
               # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
               # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
@@ -2263,11 +2263,11 @@ if(maximum_periods == 9){
           period_2_upper <- 1440
           df_subset_period_2 <- as.data.frame(df$Nominal_Cycle_Length[df$time >= period_2_lower & df$time < period_2_upper])
           colnames(df_subset_period_2) <- c("Nominal_Cycle_Length")
-          proposed_cycle_period_2 <- as.integer(mean(df_subset_period_2$Nominal_Cycle_Length)/cycle_length_rounded)*cycle_length_rounded
+          proposed_cycle_period_2 <- as.integer(quantile(df_subset_period_2$Nominal_Cycle_Length, prob = percentile)/cycle_length_rounded)*cycle_length_rounded
           df_proposed_cycle_2 <- as.data.frame(rep(proposed_cycle_period_2,times = nrow(df_subset_period_2)))
           colnames(df_proposed_cycle_2) <- c("proposed")
           df_subset_period_2$diff <- abs(df_subset_period_2$Nominal_Cycle_Length - df_proposed_cycle_2$proposed)
-          diff_avg_period2 <- quantile(df_subset_period_2$diff, prob = percentile)
+          diff_avg_period2 <- mean(df_subset_period_2$diff)
           
           # df_error <- data.frame(matrix(ncol = 6, nrow = 0))
           # colnames(df_error) <- c("period1_start","period1_end", "period1_error","period2_start","period2_end", "period2_error")
