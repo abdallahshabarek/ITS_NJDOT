@@ -1,6 +1,6 @@
-strategic_approach_list <- c(130,131)
-selected_Dates <- c("2021-05-22","2021-05-23")
-inputdir <- "C:/Users/Abdullah.Shabarek/Desktop/AMC_Coding/SM/SM_files"
+# strategic_approach_list <- c(130,131)
+# selected_Dates <- c("2021-05-22","2021-05-23")
+# inputdir <- "C:/Users/Abdullah.Shabarek/Desktop/AMC_Coding/SM/SM_files"
 function5_readSM_strategicapproach_selected_date_DS <- function(inputdir, selected_Dates, strategic_approach_list){
   sm_list <- list.files(path = inputdir ,pattern = ".*.txt")
   selected_Dates <- as.Date(selected_Dates)
@@ -288,7 +288,7 @@ on a.time = b.time",drv="SQLite")
   return(df222_final)
 }
 
-df <- function5_readSM_strategicapproach_selected_date_DS(inputdir,selected_Dates,strategic_approach_list)
+# df <- function5_readSM_strategicapproach_selected_date_DS(inputdir,selected_Dates,strategic_approach_list)
 # dttt <- function5_midweek("C:/Users/Abdullah.Shabarek/Desktop/TOD/Sep_data/TOD_week2")
 # dttt <- function5("C:/Users/Abdullah.Shabarek/Desktop/TOD/Sep_data/TOD","C:/Users/Abdullah.Shabarek/Desktop/TOD/output_sep")
 # inputdir <- "C:/Users/Abdullah.Shabarek/Desktop/TOD/Sep_data/test"
